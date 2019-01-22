@@ -41,7 +41,7 @@ passport.use(
         (accessToken, refreshToken, profile, done) => {
             
             User.findOne({googleID: profile.id})
-            .then((existingUser) => {   
+            .then(existingUser => {   
                 
                 if(existingUser) {
                     

@@ -1,4 +1,5 @@
 const express = require('express');
+// const proxy = require('http-proxy-middleware');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -17,7 +18,6 @@ mongoose.connect(keys.mongoURI, {
 });
 
 const app = express();
-
 //call cookie session as middleware via express app
 app.use(
     cookieSession({
@@ -28,7 +28,7 @@ app.use(
         keys: [keys.cookieKey]
     })
 );
-
+    
 //tell passport to authenticate via cookie by calling on passport.initialize, and passport.session as middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,6 +37,11 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
+    
+// app.use('/auth/google', proxy({
+//     target: 'http://localhost:5000',
+//     changeOrigin: true
+// }));
 
 app.listen(PORT, () => {
     console.log(`Serving on PORT: ${PORT}`);
