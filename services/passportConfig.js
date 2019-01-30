@@ -21,7 +21,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     
     //find functions fetch record data from mongo collections
-    User.findById(id).then(user => {
+    User.findById(id)
+    .then(user => {
         console.log(user)
         done(null, user);
     })
