@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 //the structure for our records that will contain users
-//creating property that will store googleID and setting value to be String. Can also be set to be Number 
+//creating property that will store googleID and setting value type to String. Type can also be Number 
 //can freely add or subtract properties without breaking anything
 const userSchema = new Schema({
     googleID: String
