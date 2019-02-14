@@ -38,10 +38,11 @@ passport.use(
             callbackURL: '/auth/google/callback',
             proxy: true
         },
-
         (accessToken, refreshToken, profile, done) => {
             
-            User.findOne({googleID: profile.id})
+            //promise
+            //google strategy user id in db?
+            User.findOne({googleID: profile.id}) 
             .then(existingUser => {   
                 
                 if(existingUser) {
